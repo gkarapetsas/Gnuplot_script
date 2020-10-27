@@ -1,3 +1,3 @@
 # Gnuplot_script
 
-A useful script to produce figures
+A useful gnuplot script to produce figures
