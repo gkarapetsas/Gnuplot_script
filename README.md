@@ -2,8 +2,8 @@
 
 A useful gnuplot script to produce figures
 
-Run using the following command:
+Run in linux command line using the following command:
 
-gnuplot plot.gp
+gnuplot plot.plt
 
 An example figure using this script is given in Figure.png
