@@ -2,4 +2,6 @@
 
 A useful gnuplot script to produce figures
 
-Run using the following command:     gnuplot plot.gp
+Run using the following command:
+
+gnuplot plot.gp
