@@ -105,11 +105,12 @@ CUSTOM_PLOT = 'plot b = 1, FILE[b] u Xcol[b]:Ycol[b] \
 
 ##########################################################################
 #
-# ATTENTION: DO NOT MODIFY unless there is important reason
-#
 # Source code for preparing gnuplot plots
 #
-# Detailed examples can be found in http://gnuplot.sourceforge.net/demo/
+# ATTENTION: DO NOT MODIFY THIS PART unless there is important reason
+#
+# Detailed examples for different types of plots 
+# can be found in http://gnuplot.sourceforge.net/demo/
 #
 ##########################################################################
 
