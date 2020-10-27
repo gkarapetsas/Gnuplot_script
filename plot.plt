@@ -22,11 +22,11 @@ array Ycol[N_curves]
 array Ctitle[N_curves]
 
 k = 1
-FILE[k] = 'sample.dat'  ;  Ctitle[k] = '{/Times:Italic y}_1' ; k = k + 1
-FILE[k] = 'sample.dat'  ;  Ctitle[k] = '{/Times:Italic y}_2' ; k = k + 1
-FILE[k] = 'sample.dat'  ;  Ctitle[k] = '{/Times:Italic y}_3' ; k = k + 1
-FILE[k] = 'sample.dat'  ;  Ctitle[k] = '{/Times:Italic y}_4' ; k = k + 1
-FILE[k] = 'sample.dat'  ;  Ctitle[k] = '{/Times:Italic y}_5' ; k = k + 1
+FILE[k] = 'sample.dat'  ;  Ctitle[k] = '{/Times-New-Roman:Italic y}_1' ; k = k + 1
+FILE[k] = 'sample.dat'  ;  Ctitle[k] = '{/Times-New-Roman:Italic y}_2' ; k = k + 1
+FILE[k] = 'sample.dat'  ;  Ctitle[k] = '{/Times-New-Roman:Italic y}_3' ; k = k + 1
+FILE[k] = 'sample.dat'  ;  Ctitle[k] = '{/Times-New-Roman:Italic y}_4' ; k = k + 1
+FILE[k] = 'sample.dat'  ;  Ctitle[k] = '{/Times-New-Roman:Italic y}_5' ; k = k + 1
 
 k = 1
 Xcol[k] = 1  ;  Ycol[k] = 2  ; k = k + 1
@@ -37,15 +37,15 @@ Xcol[k] = 1  ;  Ycol[k] = 6  ; k = k + 1
 
 # Set figure title (Leave blank if no title needed)
 #TITLE = ''
-TITLE = 'Y(x) or A_{j,k} or {/Times:Italic A}^2_{/Times:Italic j} or {/Arial:Bold=20 A_b}'
+TITLE = 'Y(x) or A_{j,k} or {{/Times-New-Roman:Italic A}_{/Times-New-Roman:Italic j}}^2 or {/Arial:Bold=20 A_b}'
 
 # Set plot range
 X_min = -10.0 ; X_max = 10.0
 Y_min = -30.0 ; Y_max = 100.0
 
 # Set axis labels
-X_label = '{/Times:Italic x}_1'
-Y_label = 'y({/Times:Italic x}_1)'
+X_label = '{/Times-New-Roman:Italic x}_1'
+Y_label = 'y({/Times-New-Roman:Italicc x}_1)'
 
 # Set legend position
 set key center top
@@ -109,7 +109,7 @@ CUSTOM_PLOT = 'plot b = 1, FILE[b] u Xcol[b]:Ycol[b] \
 set term pngcairo dashed \
                   size 1100,920 \
                   linewidth 3 \
-                  font "Times,24"
+                  font "Times-New-Roman,24"
 
 # The filename
 set output NAME
