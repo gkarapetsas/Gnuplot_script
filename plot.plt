@@ -31,12 +31,13 @@ PLOT_STYLE = 1  #  1 : use default options
 # Set Number of curves
 N_curves = 5
 
-# Set file name with data and columns to be read 
+# Define arrays 
 array FILE[N_curves] 
 array Xcol[N_curves]
 array Ycol[N_curves]
 array Ctitle[N_curves]
 
+# Set file name with data and columns to be read 
 k = 1
 FILE[k] = 'sample.dat'  ;  Ctitle[k] = '{/Times-New-Roman:Italic y}_1' ; k = k + 1
 FILE[k] = 'sample.dat'  ;  Ctitle[k] = '{/Times-New-Roman:Italic y}_2' ; k = k + 1
