@@ -19,10 +19,10 @@ NAME = 'Figure.png'
 ASPECT_RATIO = 1.
 
 # Set plot color and style
-PLOT_COLOR = 1  #  1 : black & white figure with dashed lines
+PLOT_COLOR = 0  #  1 : black & white figure with dashed lines
                 #  0 : coloured figure
 
-PLOT_LINES = 1  #  1 : coloured figure with solid lines
+PLOT_LINES = 0  #  1 : coloured figure with solid lines
                 #  0 : coloured figure with dashed lines
 
 PLOT_STYLE = 1  #  1 : use default options
@@ -118,11 +118,6 @@ CUSTOM_PLOT = 'plot b = 1, \
                                    notitle, \
                                    b = b + 1, \
                     n = 3, \
-                           FILE[b] u Xcol[b]:Ycol[b] \
-                                   @LINE_STYLE \
-                                   w p \
-                                   title Ctitle[b], \
-                                   b = b + 1, \
                            FILE[b] u Xcol[b]:Ycol[b] \
                                    @LINE_STYLE \
                                    w l \

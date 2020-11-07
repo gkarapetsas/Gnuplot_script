@@ -120,11 +120,6 @@ CUSTOM_PLOT = 'plot b = 1, \
                     n = 3, \
                            FILE[b] u Xcol[b]:Ycol[b] \
                                    @LINE_STYLE \
-                                   w p \
-                                   title Ctitle[b], \
-                                   b = b + 1, \
-                           FILE[b] u Xcol[b]:Ycol[b] \
-                                   @LINE_STYLE \
                                    w l \
                                    title Ctitle[b]'
 
