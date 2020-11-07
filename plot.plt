@@ -15,10 +15,18 @@
 # Set name of file
 NAME = 'Figure.png'
 
+# Set Figure Aspect Ratio (ASPECT_RATIO = ySize/xSize)
+ASPECT_RATIO = 1.
+
 # Set plot color and style
-PLOT_COLOR = 1  # 1 : for black & white figure with dashed lines (otherwise coloured figure)
-PLOT_LINES = 1  # 1 : for coloured figure with solid lines  (otherwise dashed lines)
-PLOT_STYLE = 1  # 1 : for default options (otherwise modify accordingly CUSTOM_PLOT below)
+PLOT_COLOR = 0  #  1 : black & white figure with dashed lines
+                #  0 : coloured figure
+
+PLOT_LINES = 1  #  1 : coloured figure with solid lines
+                #  0 : coloured figure with dashed lines
+
+PLOT_STYLE = 0  #  1 : use default options
+                #  0 : for custom plots. Need to modify accordingly CUSTOM_PLOT below
 
 # Set Number of curves
 N_curves = 5
@@ -91,15 +99,27 @@ INSET_ytics  = '0,30,90'
 #
 #############################################################
 
-CUSTOM_PLOT = 'plot b = 1, FILE[b] u Xcol[b]:Ycol[b] \
-                                   ls (b*100+PTYPE[b])*10+1 w lp \
-                                   title Ctitle[b], b = b + 1, \
+CUSTOM_PLOT = 'plot b = 1, \
+                    n = 1, \
                            FILE[b] u Xcol[b]:Ycol[b] \
-                                   ls (b*100+PTYPE[b])*10+1 \
+                                   @LINE_STYLE \
+                                   w lp \
+                                   title Ctitle[b], \
+                                   b = b + 1, \
+                    n = 2, \
+                           FILE[b] u Xcol[b]:Ycol[b] \
+                                   @LINE_STYLE \
                                    w l \
-                                   title Ctitle[b], b = b + 1, \
+                                   title Ctitle[b], \
+                                   b = b + 1, \
                            FILE[b] u Xcol[b]:Ycol[b] \
-                                   ls (b*100+PTYPE[b])*10+1 \
+                                   @LINE_STYLE \
+                                   w l \
+                                   notitle, \
+                                   b = b + 1, \
+                    n = 3, \
+                           FILE[b] u Xcol[b]:Ycol[b] \
+                                   @LINE_STYLE \
                                    w l \
                                    title Ctitle[b]'
 
@@ -114,9 +134,18 @@ CUSTOM_PLOT = 'plot b = 1, FILE[b] u Xcol[b]:Ycol[b] \
 #
 ##########################################################################
 
+# ASPECT_RATIO = ySize/xSize
+if (ASPECT_RATIO > 1) {
+ySize = 1.
+xSize = ySize/ASPECT_RATIO
+} else {
+xSize = 1.
+ySize = xSize*ASPECT_RATIO
+}
+
 # Set the output to a png file with size 1100x920 without any margins 
 set term pngcairo dashed \
-                  size 1100,920 \
+                  size xSize*1100,ySize*920 \
                   linewidth 3 \
                   font "Times-New-Roman,24"
 
@@ -254,6 +283,25 @@ if (PLOT_STYLE==1) {
 
 # Plot customized plot
   @CUSTOM_PLOT
+
+# Plot inset with default options
+  if (INSET==1) {
+    set origin @INSET_ORIGIN
+    set size   @INSET_SIZE
+    set xrange @INSET_xrange
+    set yrange @INSET_yrange
+    set xtics  @INSET_xtics
+    set ytics  @INSET_ytics
+    unset mxtics
+    unset mytics
+    unset xlabel
+    unset ylabel
+    unset title
+    unset key
+
+    @CUSTOM_PLOT
+
+  }
 
 }
 
