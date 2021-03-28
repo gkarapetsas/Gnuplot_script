@@ -29,7 +29,11 @@ PLOT_STYLE = 1  #  1 : use default options
                 #  0 : for custom plots. Need to modify accordingly CUSTOM_PLOT below
 
 # Set Number of curves
-N_curves = 5
+N_curves_lines      = 2
+N_curves_points     = 2
+N_curves_linepoints = 1
+
+N_curves = N_curves_lines + N_curves_points + N_curves_linepoints
 
 # Define arrays 
 array FILE[N_curves] 
@@ -37,7 +41,10 @@ array Xcol[N_curves]
 array Ycol[N_curves]
 array Ctitle[N_curves]
 
-# Set file name with data and columns to be read 
+# Set file name with data and columns to be read
+#    First,  give the data that will be plotted with lines
+#    Second, give the data that will be plotted with points
+#    Third,  give the data that will be plotted with linepoints 
 k = 1
 FILE[k] = 'sample.dat'  ;  Ctitle[k] = '{/Times-New-Roman:Italic y}_1' ; k = k + 1
 FILE[k] = 'sample.dat'  ;  Ctitle[k] = '{/Times-New-Roman:Italic y}_2' ; k = k + 1
@@ -54,7 +61,7 @@ Xcol[k] = 1  ;  Ycol[k] = 6  ; k = k + 1
 
 # Set figure title (Leave blank if no title needed)
 #TITLE = ''
-TITLE = 'Y(x) or A_{j,k} or {{/Times-New-Roman:Italic A}_{/Times-New-Roman:Italic j}}^2 or {/Arial:Bold=20 A_b}'
+TITLE = 'Διάγραμμα Y(x) or A_{j,k} or {{/Times-New-Roman:Italic A}_{/Times-New-Roman:Italic j}}^2 or {/Arial:Bold=20 A_b}'
 
 # Set plot range
 X_min = -10.0 ; X_max = 10.0
@@ -150,8 +157,15 @@ ySize = xSize*ASPECT_RATIO
 }
 
 # Set the output to a png file with size 1100x920 without any margins 
+xRes = 1100
+if (TITLE eq '') {
+yRes = 850
+} else {
+yRes = 920
+}
+
 set term pngcairo dashed \
-                  size xSize*1100,ySize*920 \
+                  size xSize*xRes,ySize*yRes \
                   linewidth 3 \
                   font "Times-New-Roman,24"
 
@@ -256,14 +270,53 @@ if (PLOT_COLOR==1) {
 }}
 
 
+# Define commands PLOT1, PLOT2, PLOT3 to be used below 
+  if (N_curves_lines != 0) {
+     PLOT1 = 'plot'
+     PLOT2 = 'replot'
+     PLOT3 = 'replot'
+   } else {
+     if (N_curves_points != 0) {
+        PLOT1 = 'plot'
+        PLOT2 = 'plot'
+        PLOT3 = 'replot'
+     } else {
+        PLOT1 = 'plot'
+        PLOT2 = 'plot'
+        PLOT3 = 'plot'
+   }}
+
+
 # Create plot 
 if (PLOT_STYLE==1) {
 
 # Plot with default options
-  plot for [n=1:N_curves] FILE[n] u Xcol[n]:Ycol[n] \
-                          @LINE_STYLE \
-                          w l \
-                          title Ctitle[n]
+  if (N_curves_lines != 0 ) {
+  @PLOT1 for [n=1:N_curves_lines] \
+         FILE[n] \
+         u Xcol[n]:Ycol[n] \
+         @LINE_STYLE \
+         w l \
+         title Ctitle[n]
+  }
+
+  if (N_curves_points != 0 ) {
+  @PLOT2 for [n=1:N_curves_points] \
+         FILE[N_curves_lines+n] \
+         u Xcol[N_curves_lines+n]:Ycol[N_curves_lines+n] \
+         @LINE_STYLE \
+         w p \
+         title Ctitle[N_curves_lines+n]
+   }
+
+  if (N_curves_linepoints != 0) {
+  @PLOT3 for [n=1:N_curves_linepoints] \
+         FILE[N_curves_lines+N_curves_points+n] \
+         u Xcol[N_curves_lines+N_curves_points+n]:Ycol[N_curves_lines+N_curves_points+n] \
+         @LINE_STYLE \
+         w lp \
+         title Ctitle[N_curves_lines+N_curves_points+n]
+  }
 
 # Plot inset with default options
   if (INSET==1) {
@@ -280,9 +333,30 @@ if (PLOT_STYLE==1) {
     unset title
     unset key
 
-    plot for [n=1:N_curves] FILE[n] u Xcol[n]:Ycol[n] \
-                            @LINE_STYLE \
-                            w l 
+    if (N_curves_lines != 0 ) {
+    @PLOT1 for [n=1:N_curves_lines] \
+           FILE[n] \
+           u Xcol[n]:Ycol[n] \
+           @LINE_STYLE \
+           w l 
+    }
+
+    if (N_curves_points != 0) {
+    @PLOT2 for [n=1:N_curves_points] \
+           FILE[N_curves_lines+n] \
+           u Xcol[N_curves_lines+n]:Ycol[N_curves_lines+n] \
+           @LINE_STYLE \
+           w p 
+    }
+
+    if (N_curves_linepoints != 0) {
+    @PLOT3 for [n=1:N_curves_linepoints] \
+           FILE[N_curves_lines+N_curves_points+n] \
+           u Xcol[N_curves_lines+N_curves_points+n]:Ycol[N_curves_lines+N_curves_points+n] \
+           @LINE_STYLE \
+           w lp
+    }
+
   }
 
 } else {

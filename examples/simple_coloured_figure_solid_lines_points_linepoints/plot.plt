@@ -25,13 +25,13 @@ PLOT_COLOR = 0  #  1 : black & white figure with dashed lines
 PLOT_LINES = 1  #  1 : coloured figure with solid lines
                 #  0 : coloured figure with dashed lines
 
-PLOT_STYLE = 0  #  1 : use default options
+PLOT_STYLE = 1  #  1 : use default options
                 #  0 : for custom plots. Need to modify accordingly CUSTOM_PLOT below
 
 # Set Number of curves
-N_curves_lines      = 5
-N_curves_points     = 0
-N_curves_linepoints = 0
+N_curves_lines      = 2
+N_curves_points     = 2
+N_curves_linepoints = 1
 
 N_curves = N_curves_lines + N_curves_points + N_curves_linepoints
 
