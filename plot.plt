@@ -59,6 +59,9 @@ Xcol[k] = 1  ;  Ycol[k] = 4  ; k = k + 1
 Xcol[k] = 1  ;  Ycol[k] = 5  ; k = k + 1
 Xcol[k] = 1  ;  Ycol[k] = 6  ; k = k + 1
 
+# Ingore any lines in datafile starting with #,! or %
+set datafile commentschars "#!%"
+
 # Set figure title (Leave blank if no title needed)
 #TITLE = ''
 TITLE = 'Διάγραμμα Y(x) or A_{j,k} or {{/Times-New-Roman:Italic A}_{/Times-New-Roman:Italic j}}^2 or {/Arial:Bold=20 A_b}'
@@ -66,6 +69,10 @@ TITLE = 'Διάγραμμα Y(x) or A_{j,k} or {{/Times-New-Roman:Italic A}_{/Ti
 # Set plot range
 X_min = -10.0 ; X_max = 10.0
 Y_min = -30.0 ; Y_max = 100.0
+
+# The axis range
+set xrange [X_min:X_max]
+set yrange [Y_min:Y_max]
 
 # Set axis labels
 X_label = '{/Times-New-Roman:Italic x}_1'
@@ -178,10 +185,6 @@ set title TITLE
 # The axis labels
 set xlabel X_label
 set ylabel Y_label
-
-# The axis range
-set xrange [X_min:X_max]
-set yrange [Y_min:Y_max]
 
 set mxtics
 set mytics
