@@ -67,6 +67,10 @@ TITLE = 'Διάγραμμα Y(x) or A_{j,k} or {{/Times-New-Roman:Italic A}_{/Ti
 X_min = -10.0 ; X_max = 10.0
 Y_min = -30.0 ; Y_max = 100.0
 
+# The axis range
+set xrange [X_min:X_max]
+set yrange [Y_min:Y_max]
+
 # Set axis labels
 X_label = '{/Times-New-Roman:Italic x}_1'
 Y_label = 'y({/Times-New-Roman:Italicc x}_1)'
@@ -178,10 +182,6 @@ set title TITLE
 # The axis labels
 set xlabel X_label
 set ylabel Y_label
-
-# The axis range
-set xrange [X_min:X_max]
-set yrange [Y_min:Y_max]
 
 set mxtics
 set mytics
