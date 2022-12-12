@@ -64,7 +64,7 @@ set datafile commentschars "#!%"
 
 # Set figure title (Leave blank if no title needed)
 #TITLE = ''
-TITLE = 'Διάγραμμα Y(x) or A_{j,k} or {{/Times-New-Roman:Italic A}_{/Times-New-Roman:Italic j}}^2 or {/Arial:Bold=20 A_b}'
+TITLE = 'Διάγραμμα Y(x) or A_{j,k} or {{/Times-New-Roman:Italic A}_{/Times-New-Roman:Italic j}}^2 or {/Arial:Bold=20 A_b} or ~γ{.8.} or ~v{.6-}'
 
 # Set plot range
 X_min = -10.0 ; X_max = 10.0
